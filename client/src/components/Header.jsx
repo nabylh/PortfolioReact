@@ -1,5 +1,4 @@
 import React from "react";
-import exportImage from "/assets/images/export.png";
 
 function Header() {
   return (
@@ -131,11 +130,6 @@ function Header() {
             </button>
           </div>
         </nav>
-        <img
-        // src={exportImage}
-        // alt="Capture d'écran du site"
-        // className="capture2 "
-        />
       </header>
     </>
   );

@@ -1,4 +1,12 @@
 import React from "react";
+import capture2 from "/assets/images/capture2.png";
+import LogoCSS from "/assets/images/LogoCSS.png";
+import LogoJavaScript from "/assets/images/LogoJavaScript.png";
+import LogoSQL from "/assets/images/LogoSQL.png";
+import logoJS from "/assets/images/LogoJS.png";
+import GreyGeometricalShapesBackground from "/assets/images/GreyGeometricalShapesBackground.webp";
+import BlackWhiteBackground from "/assets/images/BlackWhiteBackground.webp";
+import laptop from "/assets/images/laptop.jpg";
 
 function Main() {
   return (
@@ -21,7 +29,11 @@ function Main() {
             </p>
           </article>
 
-          <img className="capture2" src="/images/export.png" alt="capture2" />
+          <img
+            className="capture2"
+            src="/assets/images/capture2.png"
+            alt="capture2"
+          />
 
           <article className="presentation">
             <h1>Pour Mieux vous accompagner</h1>
@@ -30,25 +42,25 @@ function Main() {
 
           <article className="logo">
             <img
-              src="/images/java-script.png"
+              src="assets/images/LogoJavaScript.png"
               alt="logo javascript"
               width="150"
               height="150"
             />
             <img
-              src="/images/sql-server.png"
+              src="/assets/images/LogoSQL.png"
               alt="logo sql server"
               width="150"
               height="150"
             />
             <img
-              src="/images/css-3.png"
+              src="/assets/images/LogoCSS.png"
               alt="logo css"
               width="150"
               height="150"
             />
             <img
-              src="/images/logojs.png"
+              src="/assets/images/LogoJS.png"
               alt="logo js"
               width="150"
               height="150"
@@ -75,7 +87,7 @@ function Main() {
               Voluptate, nam.
             </p>
             <img
-              src="/images/laptop.jpg"
+              src="assets/images/laptop.jpg"
               alt="laptop"
               width="500"
               height="300"
