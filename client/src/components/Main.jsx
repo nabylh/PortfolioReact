@@ -3,7 +3,7 @@ import capture2 from "/assets/images/capture2.png";
 import LogoCSS from "/assets/images/LogoCSS.png";
 import LogoJavaScript from "/assets/images/LogoJavaScript.png";
 import LogoSQL from "/assets/images/LogoSQL.png";
-import logoJS from "/assets/images/LogoJS.png";
+import LogoNode from "/assets/images/LogoNode.png";
 import GreyGeometricalShapesBackground from "/assets/images/GreyGeometricalShapesBackground.webp";
 import BlackWhiteBackground from "/assets/images/BlackWhiteBackground.webp";
 import laptop from "/assets/images/laptop.jpg";
@@ -60,7 +60,7 @@ function Main() {
               height="150"
             />
             <img
-              src="/assets/images/LogoJS.png"
+              src="/assets/images/LogoNode.png"
               alt="logo js"
               width="150"
               height="150"
