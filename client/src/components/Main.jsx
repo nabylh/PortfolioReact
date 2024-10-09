@@ -96,7 +96,7 @@ function Main() {
         </section>
 
         <section id="mycv">
-          <a href="/plaquette/link/CV2023.24PE.pdf">
+          <a href="/public/CV.pdf" download>
             <h2>Telecharger mon CV </h2>
           </a>
         </section>
