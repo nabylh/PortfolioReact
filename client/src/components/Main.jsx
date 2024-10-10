@@ -7,6 +7,7 @@ import LogoNode from "/assets/images/LogoNode.png";
 import GreyGeometricalShapesBackground from "/assets/images/GreyGeometricalShapesBackground.webp";
 import BlackWhiteBackground from "/assets/images/BlackWhiteBackground.webp";
 import laptop from "/assets/images/laptop.jpg";
+import Articles from "./Articles";
 
 function Main() {
   return (
@@ -99,6 +100,10 @@ function Main() {
           <a href="/public/CV.pdf" download>
             <h2>Telecharger mon CV </h2>
           </a>
+        </section>
+
+        <section id="articles">
+          <Articles /> {/* Affichage de la liste des articles */}
         </section>
       </main>
     </>

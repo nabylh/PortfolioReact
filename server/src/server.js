@@ -9,12 +9,14 @@ import articlesRoutes from "./routes/articles.routes.js";
 const app = express();
 const PORT = process.env.PORT || 3000;
 const imagesPath = path.join(process.cwd(), './client/public/assets/images')
- console.log("chemin ok pour les images",imagesPath);
+
 
 app.use(cors());
 
-app.use('/assets/images', express.static(path.join(process.cwd(), '/public/assets/images')));
-app.use('/articles', articlesRoutes);
+ app.use('/images', express.static(path.join(process.cwd(), 'server/public/images')));
+ app.use('/articles', articlesRoutes);
+ 
+ 
 
 app.get('/', async (req, res) => {
     try {
@@ -22,7 +24,7 @@ app.get('/', async (req, res) => {
         console.log("Connecté à la bdd blog :", connection.config.database);
         
         
-        const [rows] = await connection.query('SELECT * FROM image LIMIT 10'); 
+        const [rows] = await connection.query('SELECT * FROM article LIMIT 10'); 
         connection.release(); 
         
         res.json(rows); 
