@@ -30,7 +30,6 @@ const Articles = () => {
 
   return (
     <div>
-      <h1>Liste des articles</h1>
       <ul>
         {articles.map((article) => (
           <li key={article.id}>

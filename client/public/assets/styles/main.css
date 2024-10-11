@@ -412,4 +412,10 @@ gap: 2em; */
   border: white 0.2rem solid;
 }
 
+#articles {
+  background-color: white;
+  font-size: large;
+}
+
+
 /*les medias Queries*//*# sourceMappingURL=main.css.map */

@@ -103,7 +103,13 @@ function Main() {
         </section>
 
         <section id="articles">
-          <Articles /> {/* Affichage de la liste des articles */}
+          <Articles />
+          <img
+            src="/assets/images/inclusion_web_3wc.webp"
+            alt="laptop"
+            width="500"
+            height="300"
+          />
         </section>
       </main>
     </>

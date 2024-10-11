@@ -535,6 +535,29 @@ justify-content: center;
     }
   }
 
+  #articles {
+    display: flex;
+    // background-image: url("../images/BlackWhiteBackground.webp");
+    
+    background-repeat: no-repeat;
+   background-color: #ffffff;
+    width: 100%;
+    height: 100vh; 
+    position: relative;
+    z-index: 0;  
+    font-size: large;
+  }
+
+  #articles p {
+    display: flex;
+    width: 60%;
+  }
+
+  #articles img {
+    display: flex;
+    margin: auto;
+    width: auto;
+  }
 
 
 

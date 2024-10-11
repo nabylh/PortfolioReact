@@ -3,6 +3,7 @@ import pool from './config/db.js';
 import path from 'path';
 import cors from 'cors';
 import articlesRoutes from "./routes/articles.routes.js";
+import imagesRoutes from './routes/images.routes.js';
 
 
 
@@ -15,6 +16,7 @@ app.use(cors());
 
  app.use('/images', express.static(path.join(process.cwd(), 'server/public/images')));
  app.use('/articles', articlesRoutes);
+ app.use('/images', imagesRoutes);
  
  
 

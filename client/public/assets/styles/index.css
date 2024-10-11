@@ -412,6 +412,13 @@ gap: 2em; */
   border: white 0.2rem solid;
 }
 
+
+
+
+
+
+
+
 /*les medias Queries*/
 @media only screen and (max-width: 600px) {
   /* version mobile */
