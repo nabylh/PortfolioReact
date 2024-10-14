@@ -40,3 +40,29 @@ app.listen(PORT, () => {
     console.log(`http://localhost:${PORT}`);
 });
 
+
+
+
+
+app.get('/article/:id', async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const connection = await pool.getConnection();
+        console.log('Connecté à la bdd blog :', connection.config.database);
+
+        const [rows] = await connection.query('SELECT * FROM article WHERE id = ?', [id]);
+        connection.release();
+
+        if (rows.length > 0) {
+            res.json(rows[0]);
+        } else {
+            res.status(404).send('Article non trouvé.');
+        }
+    } catch (err) {
+        console.error('Erreur de connexion à la base de données :', err);
+        res.status(500).send('Erreur de connexion à la base de données.');
+    }
+});
+
+

@@ -29,10 +29,13 @@ const Articles = () => {
   }
 
   return (
-    <div>
+    <>
       <ul>
-        {articles.map((article) => (
-          <li key={article.id}>
+        {articles.map((article, index) => (
+          <li
+            key={article.id}
+            className={index >= 1 ? `article-${article.id}` : "regular-article"}
+          >
             <h2>{article.title}</h2>
             <p>{article.content}</p>
             <small>
@@ -41,7 +44,7 @@ const Articles = () => {
           </li>
         ))}
       </ul>
-    </div>
+    </>
   );
 };
 

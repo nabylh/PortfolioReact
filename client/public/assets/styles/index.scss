@@ -358,6 +358,7 @@ flex-direction: column;
 margin: auto;
 background-image: url('/assets/images/GreyGeometricalShapesBackground.webp'); 
 background-size: cover;
+background-attachment: fixed;
 background-repeat: no-repeat;
 background-position: center;
 width: 100%;
@@ -481,12 +482,12 @@ justify-content: center;
     width: 100%;
     margin: auto;
     
-    background-image: url('/assets/images/BlackWhiteBackground.webp');
+    // background-image: url('/assets/images/BlackWhiteBackground.webp');
     box-shadow: inset 0 -3em 3em rgba(0,0,0,0.1),
     0 0  0 0.1em rgb(190, 190, 190),
     0.3em 0.3em 1em rgba(0,0,0,0.3);
     
-    height: 100vh;
+    
   
 
     
@@ -537,27 +538,51 @@ justify-content: center;
 
   #articles {
     display: flex;
-    // background-image: url("../images/BlackWhiteBackground.webp");
-    
-    background-repeat: no-repeat;
-   background-color: #ffffff;
-    width: 100%;
-    height: 100vh; 
-    position: relative;
-    z-index: 0;  
-    font-size: large;
-  }
-
-  #articles p {
-    display: flex;
-    width: 60%;
-  }
-
-  #articles img {
-    display: flex;
+    flex-direction: row;
     margin: auto;
-    width: auto;
+    height: auto;
+    
+    font-size: large;
+    background-color: #ffffff;
   }
+
+   #articles p {
+    display: flex;
+  
+   max-width: 80%;
+   }
+
+   .video_inclusion {
+    display: flex;
+    flex-direction: column;
+    padding: 3em;
+    
+    
+
+    
+   }
+
+   .article-item:nth-child(2) {
+    margin-top: 5rem;
+    
+  }
+
+  #articles {
+    img{
+      display: flex;
+     width: auto;
+     margin-top: 2em;
+      
+    }
+  }
+
+
+
+
+
+
+
+
 
 
 
