@@ -7,19 +7,24 @@ import "../public/assets/styles/responsive.scss";
 import CommentsPage from "./components/CommentsPage";
 import Undercategory from "./components/Undercategory.jsx";
 import Category from "./components/Category";
+import UndercategoryArticles from "./components/UndercategoryArticles";
 
 function App() {
   return (
     <Router>
       <Header />
-      {/* Header en dehors des Routes pour l'afficher sur toutes les pages */}
+
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/articles" element={<Articles />} />
-        {/* Route pour afficher les articles */}
+
         <Route path="/comments/:articleId" element={<CommentsPage />} />
-        {/* Correction ici : Utilisation de `element` à la place de `component` */}
+
         <Route path="/undercategory" element={<Undercategory />} />
+        <Route
+          path="/undercategory/:undercategoryName/articles"
+          element={<UndercategoryArticles />}
+        />
         <Route path="/category" element={<Category />} />
       </Routes>
     </Router>

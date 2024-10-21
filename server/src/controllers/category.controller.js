@@ -1,30 +1,97 @@
-// server/controllers/category.controller.js
+import pool from '../config/db.js';
 
-// Importation de la base de données ou du module pour interagir avec la base de données
-const db = require('../db'); // ou utilise ta configuration de base de données
+// Récupérer toutes les catégories avec leurs articles associés
+export const getAllCategoriesWithArticles = async (req, res) => {
+    try {
+        const connection = await pool.getConnection();
+        const sql = `
+            SELECT c.*, a.title AS article_title, a.id AS article_id
+            FROM category AS c
+            LEFT JOIN article AS a ON c.id = a.undercategory_id
+            ORDER BY c.id`;
+        
+        const [rows] = await connection.query(sql);
+        connection.release();
+        
+        // Formater les résultats pour regrouper les articles par catégorie
+        const categories = rows.reduce((acc, row) => {
+            const category = acc.find(cat => cat.id === row.id);
+            if (category) {
+                category.articles.push({ id: row.article_id, title: row.article_title });
+            } else {
+                acc.push({
+                    id: row.id,
+                    name: row.name,
+                    articles: row.article_id ? [{ id: row.article_id, title: row.article_title }] : []
+                });
+            }
+            return acc;
+        }, []);
 
-// Fonction qui récupère les articles pour une catégorie et sous-catégorie spécifiques
-exports.getCategoryWithUndercategory = async (req, res) => {
-  const { category, undercategory } = req.params; // Récupère les paramètres de l'URL
-
-  try {
-    // Requête SQL pour récupérer les articles en fonction de la catégorie et sous-catégorie
-    const query = `
-      SELECT article.*
-      FROM article
-      JOIN undercategory ON article.undercategory_id = undercategory.id
-      JOIN category ON undercategory.category_id = category.id
-      WHERE category.name = ? AND undercategory.name = ?
-    `;
-    // Exécution de la requête SQL avec les paramètres
-    const articles = await db.query(query, [category, undercategory]);
-
-    if (articles.length > 0) {
-      res.status(200).json({ articles }); // Retourne les articles sous forme de JSON
-    } else {
-      res.status(404).json({ message: "Aucun article trouvé pour cette catégorie et sous-catégorie." });
+        res.json(categories);
+    } catch (err) {
+        console.error('Erreur de connexion à la base de données :', err);
+        res.status(500).send('Erreur de connexion à la base de données.');
     }
-  } catch (error) {
-    res.status(500).json({ error: "Une erreur est survenue lors de la récupération des articles." });
-  }
+};
+
+// Récupérer une catégorie par ID avec ses articles associés
+export const getCategoryByIdWithArticles = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const connection = await pool.getConnection();
+        const sql = `
+            SELECT c.*, a.title AS article_title, a.id AS article_id
+            FROM category AS c
+            LEFT JOIN article AS a ON c.id = a.undercategory_id
+            WHERE c.id = ?`;
+        
+        const [rows] = await connection.query(sql, [id]);
+        connection.release();
+        
+        if (rows.length > 0) {
+            const category = {
+                id: rows[0].id,
+                name: rows[0].name,
+                articles: rows.filter(row => row.article_id).map(row => ({ id: row.article_id, title: row.article_title }))
+            };
+            res.json(category);
+        } else {
+            res.status(404).send('Catégorie non trouvée.');
+        }
+    } catch (err) {
+        console.error('Erreur de connexion à la base de données :', err);
+        res.status(500).send('Erreur de connexion à la base de données.');
+    }
+};
+
+// Récupérer une catégorie par nom avec les articles associés
+export const getCategoryByName = async (req, res) => {
+    const { name } = req.params;
+
+    try {
+        const connection = await pool.getConnection();
+        const sql = `
+            SELECT c.*, a.id AS article_id, a.title AS article_title
+            FROM category AS c
+            LEFT JOIN article AS a ON c.id = a.undercategory_id
+            WHERE c.name = ?`;
+        
+        const [rows] = await connection.query(sql, [name]);
+        connection.release();
+
+        if (rows.length > 0) {
+            const category = {
+                id: rows[0].id,
+                name: rows[0].name,
+                articles: rows.filter(row => row.article_id).map(row => ({ id: row.article_id, title: row.article_title }))
+            };
+            res.json(category);
+        } else {
+            res.status(404).send('Catégorie non trouvée.');
+        }
+    } catch (err) {
+        console.error('Erreur de connexion à la base de données :', err);
+        res.status(500).send('Erreur de connexion à la base de données.');
+    }
 };
