@@ -1,15 +1,23 @@
-import React from "react";
-import capture2 from "/assets/images/capture2.png";
-import LogoCSS from "/assets/images/LogoCSS.png";
-import LogoJavaScript from "/assets/images/LogoJavaScript.png";
-import LogoSQL from "/assets/images/LogoSQL.png";
-import LogoNode from "/assets/images/LogoNode.png";
-import GreyGeometricalShapesBackground from "/assets/images/GreyGeometricalShapesBackground.webp";
-import BlackWhiteBackground from "/assets/images/BlackWhiteBackground.webp";
-import laptop from "/assets/images/laptop.jpg";
+import React, { useEffect, useState } from "react";
+// import capture2 from "/assets/images/capture2.png";
+// import LogoCSS from "/assets/images/LogoCSS.png";
+// import LogoJavaScript from "/assets/images/LogoJavaScript.png";
+// import LogoSQL from "/assets/images/LogoSQL.png";
+// import LogoNode from "/assets/images/LogoNode.png";
+// import GreyGeometricalShapesBackground from "/assets/images/GreyGeometricalShapesBackground.webp";
+// import BlackWhiteBackground from "/assets/images/BlackWhiteBackground.webp";
+// import laptop from "/assets/images/laptop.jpg";
 import Articles from "./Articles";
 
 function Main() {
+  const [article, setArticle] = useState(null);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/articles")
+      .then((response) => response.json())
+      .then((data) => setArticle(data))
+      .catch((error) => console.error("Error fetching article:", error));
+  }, []);
   return (
     <>
       <main>
@@ -104,6 +112,7 @@ function Main() {
 
         <section id="articles">
           <Articles />
+
           <article className="video_inclusion">
             <iframe
               width="580"
@@ -117,8 +126,9 @@ function Main() {
             ></iframe>
             {
               <img
+                className="img_inclusion"
                 src="/assets/images/inclusion_web_3wc.webp"
-                alt="laptop"
+                alt="photo avec le logo de la 3wc"
                 width="500"
                 height="300"
               />

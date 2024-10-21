@@ -1,5 +1,5 @@
-// Articles.jsx
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Articles = () => {
   const [articles, setArticles] = useState([]);
@@ -29,22 +29,33 @@ const Articles = () => {
   }
 
   return (
-    <>
-      <ul>
-        {articles.map((article, index) => (
-          <li
-            key={article.id}
-            className={index >= 1 ? `article-${article.id}` : "regular-article"}
+    <ul>
+      {articles.map((article, index) => (
+        <li
+          key={article.id}
+          className={index >= 1 ? `article-${article.id}` : "regular-article"}
+        >
+          <h2>{article.title}</h2>
+          <p>{article.content}</p>
+          <small>
+            Publié le : {new Date(article.created_at).toLocaleDateString()}
+          </small>
+          {/* Lien vers la page des articles sous catégorie */}
+          <Link
+            to={`/undercategory/${article.undercategory_id}`}
+            className="undercategory-link"
           >
-            <h2>{article.title}</h2>
-            <p>{article.content}</p>
-            <small>
-              Publié le : {new Date(article.created_at).toLocaleDateString()}
-            </small>
-          </li>
-        ))}
-      </ul>
-    </>
+            {article.undercategory_name}{" "}
+            {/* Affichage du nom de la sous-catégorie */}
+          </Link>
+
+          {/* Lien vers la page des commentaires de l'article */}
+          <Link to={`/comments/${article.id}`} className="comments-link">
+            Voir les commentaires
+          </Link>
+        </li>
+      ))}
+    </ul>
   );
 };
 
