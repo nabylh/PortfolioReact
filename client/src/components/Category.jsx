@@ -22,7 +22,7 @@ const Category = () => {
     };
 
     fetchCategories();
-  }, []); // Utilise un tableau vide comme dépendance pour ne l'exécuter qu'une fois
+  }, []); 
 
   if (loading) {
     return <p>Chargement des catégories...</p>;

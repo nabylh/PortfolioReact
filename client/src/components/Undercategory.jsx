@@ -39,7 +39,7 @@ const Undercategory = () => {
           <p>{undercategory.description}</p>
           {/* Lien vers les articles associés à cette sous-catégorie */}
           <Link
-            to={`/undercategory/${undercategory.name}/articles`} // Utilisation du nom de la sous-catégorie dans l'URL
+            to={`/undercategory/${undercategory.name}/articles`} 
             className="articles-link"
           >
             Voir les articles dans cette sous-catégorie

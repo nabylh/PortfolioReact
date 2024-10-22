@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const db = require("../config/db"); // Connexion à ta BDD
+const db = require("../config/db"); 
 
 // Route pour récupérer les commentaires d'un article spécifique
 router.get("/:articleId", async (req, res) => {

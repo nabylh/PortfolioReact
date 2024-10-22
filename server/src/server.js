@@ -13,36 +13,37 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const imagesPath = path.join(process.cwd(), './client/public/assets/images');
 
-// Middlewares
+
 app.use(cors());
 
-// Gestion des fichiers statiques (images par exemple)
+//  fichiers statiques (a voir si je garde ce chemin )
 app.use('/images', express.static(path.join(process.cwd(), 'server/public/images')));
 
-// Utilisation des routes modulaires
-app.use('/articles', articlesRoutes); // Pour toutes les routes liées aux articles
-app.use('/undercategory', undercategoryRoutes); // Routes pour les sous-catégories
-app.use('/category', categoryRoutes); // Routes pour les catégories
-app.use('/images', imagesRoutes); // Routes pour la gestion des images
 
-// Route d'accueil pour tester la connexion à la base de données
+app.use('/articles', articlesRoutes);
+app.use('/undercategory', undercategoryRoutes); 
+app.use('/category', categoryRoutes); 
+app.use('/images', imagesRoutes);
+
+
 app.get('/', async (req, res) => {
     try {
         const connection = await pool.getConnection();
         console.log("Connecté à la base de données :", connection.config.database);
         
-        // Exemple : récupérer les 10 premiers articles
+     
         const [rows] = await connection.query('SELECT * FROM article LIMIT 10');
         connection.release();
         
         res.json(rows);
+        
     } catch (err) {
         console.error("Erreur de connexion à la base de données :", err);
         res.status(500).send('Erreur de connexion à la base de données.');
     }
 });
 
-// Exemple de route individuelle pour récupérer un article par ID
+//  article par ID
 app.get('/article/:id', async (req, res) => {
     const { id } = req.params;
 
@@ -64,7 +65,7 @@ app.get('/article/:id', async (req, res) => {
     }
 });
 
-// Lancer le serveur
+
 app.listen(PORT, () => {
     console.log(`Serveur en cours d'exécution sur http://localhost:${PORT}`);
 });
