@@ -42,13 +42,15 @@ const Articles = () => {
           </small>
           {/* Lien vers la page des articles sous catégorie */}
           <Link
-            to={`/undercategory/${article.undercategory_name}`}
+            to={`/undercategory/${article.undercategory_name}/articles`}
             className="undercategory-link"
           >
             {article.undercategory_name}
             {"web "}
             {/* Affichage du nom de la sous-catégorie */}
           </Link>
+
+
 
           {/* Lien vers la page des commentaires de l'article */}
           <Link to={`/comments/${article.id}`} className="comments-link">

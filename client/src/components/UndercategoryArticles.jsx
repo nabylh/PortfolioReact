@@ -10,9 +10,9 @@ const UndercategoryArticles = () => {
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        // Effectuer une requête pour récupérer les articles basés sur le nom de la sous-catégorie
+        //ATTENTION LE LIEN A VERIFIER http://localhost:3000/undercategory/articles/ YA PLUS DE NAME 
         const response = await fetch(
-          `http://localhost:3000/undercategory/name/${undercategoryName}/articles`
+          `http://localhost:3000/undercategory/articles/${undercategoryName}`
         );
 
         if (!response.ok) {

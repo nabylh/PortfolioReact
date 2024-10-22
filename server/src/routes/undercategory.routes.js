@@ -19,7 +19,7 @@ router.get('/:id', getUndercategoryById);
 router.get('/:id/articles', getArticlesByUndercategoryId);
 
 // Route pour récupérer une sous-catégorie par nom
-router.get('/name/:name', getUndercategoryByName);
+router.get('/:name', getUndercategoryByName);
 
 // Route pour récupérer les articles associés à une sous-catégorie par nom
 // router.get('/name/:name/articles', getArticlesByUndercategoryName); // Ajout de cette route
