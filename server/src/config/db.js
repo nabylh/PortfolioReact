@@ -23,3 +23,4 @@ console.log("Error connecting to DB: ", err);
 });
 
 export default pool;
+

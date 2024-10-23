@@ -24,5 +24,14 @@ router.get('/:name', getUndercategoryByName);
 // Route pour récupérer les articles associés à une sous-catégorie par nom
 // router.get('/name/:name/articles', getArticlesByUndercategoryName); // Ajout de cette route
 router.get('/articles/:name', getArticlesByUndercategoryName);
+
+// Route pour afficher toutes les sous-catégorie en fonction d'un catégorie (id)
+// Route pour ajouter une sous-categorie
+// Route pour modifier une sous-categorie
+// Route pour supprimer une sous-categorie
+
+
+
+
 export default router;
 

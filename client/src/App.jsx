@@ -8,29 +8,26 @@ import CommentsPage from "./components/CommentsPage";
 import Undercategory from "./components/Undercategory.jsx";
 import Category from "./components/Category";
 import UndercategoryArticles from "./components/UndercategoryArticles";
+import NotFound from "./components/NotFound"; // Assurez-vous de créer ce composant
 
 function App() {
   return (
     <Router>
       <Header />
-
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/articles" element={<Articles />} />
-
+        <Route path="/article" element={<Articles />} />
         <Route path="/comments/:articleId" element={<CommentsPage />} />
-
         <Route path="/undercategory" element={<Undercategory />} />
+        <Route path="/category" element={<Category />} />
         <Route
-          path="/undercategory/:undercategoryName/articles"
+          path="/undercategory/:undercategoryName"
           element={<UndercategoryArticles />}
         />
-        <Route path="/category" element={<Category />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );
 }
 
 export default App;
-
-
