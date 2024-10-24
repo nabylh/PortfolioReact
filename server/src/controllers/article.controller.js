@@ -1,4 +1,5 @@
 // src/controllers/articleController.js
+
 import Article from "../models/Article.js";
 
 // Récupérer tous les articles
@@ -11,20 +12,7 @@ const getAllArticles = async (req, res) => {
     }
 };
 
-// Récupérer un article par son ID
-const getArticleById = async (req, res) => {
-    try {
-        const article = await Article.findById(req.params.id);
-        if (!article) {
-            return res.status(404).json({ message: "Article non trouvé" });
-        }
-        res.status(200).json(article);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-};
-
-// Récupérer des articles par nom (titre)
+// Récupérer des articles par nom 
 const getArticlesByName = async (req, res) => {
     try {
         const articles = await Article.findByName(req.params.name);
@@ -37,33 +25,43 @@ const getArticlesByName = async (req, res) => {
     }
 };
 
-// Récupérer des articles par sous-catégorie
-const getArticlesBySubcategory = async (req, res) => {
+// Récupérer les articles par nom de sous-catégorie
+const getArticlesByUndercategoryName = async (req, res) => {
     try {
-        const articles = await Article.findBySubcategory(req.params.undercategory_id);
-        if (articles.length === 0) {
-            return res.status(404).json({ message: "Aucun article trouvé dans cette sous-catégorie" });
-        }
-        res.status(200).json(articles);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-};
-
-// Récupérer des articles par nom de sous-catégorie
-const getArticlesByUndercategory = async (req, res) => {
-    try {
-        const { undercategoryName } = req.params;
+        const undercategoryName = req.params.name;
         const articles = await Article.findByUndercategoryName(undercategoryName);
-        if (articles.length === 0) {
-            return res.status(404).json({ message: "Aucun article trouvé dans cette sous-catégorie" });
+        
+        if (!articles || articles.length === 0) {
+            return res.status(404).json({ message: "Aucun article trouvé pour cette sous-catégorie" });
         }
+        
         res.status(200).json(articles);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 };
 
+// Récupérer des articles par nom de catégorie
+const getArticlesByCategoryName = async (req, res) => {
+    try {
+        const { categoryName } = req.params;
+        const category = await Category.findByName(categoryName);
+        
+        if (!category) {
+            return res.status(404).json({ message: "Catégorie non trouvée" });
+        }
+        
+        const articles = await Article.findByCategoryId(category.id);
+        
+        if (articles.length === 0) {
+            return res.status(404).json({ message: "Aucun article trouvé dans cette catégorie" });
+        }
+        
+        res.status(200).json(articles);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
 
 // Créer un nouvel article
 const createArticle = async (req, res) => {
@@ -81,9 +79,11 @@ const updateArticle = async (req, res) => {
     try {
         const { title, content, source, undercategory_id } = req.body;
         const updatedArticle = await Article.update({ title, content, source, undercategory_id }, req.params.id);
+        
         if (!updatedArticle) {
             return res.status(404).json({ message: "Article non trouvé" });
         }
+        
         res.status(200).json(updatedArticle);
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -94,24 +94,23 @@ const updateArticle = async (req, res) => {
 const deleteArticle = async (req, res) => {
     try {
         const result = await Article.remove(req.params.id);
+        
         if (!result) {
             return res.status(404).json({ message: "Article non trouvé" });
         }
+        
         res.status(200).json({ message: "Article supprimé avec succès" });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 };
 
-
-
 export { 
     getAllArticles, 
-    getArticleById, 
     getArticlesByName, 
-    getArticlesBySubcategory, 
     createArticle, 
     updateArticle, 
     deleteArticle,
-    getArticlesByUndercategory
+    getArticlesByUndercategoryName,
+    getArticlesByCategoryName
 };

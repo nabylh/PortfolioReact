@@ -10,15 +10,16 @@ class Undercategory {
             throw new Error(`Error fetching undercategories: ${error.message}`);
         }
     }
-
-    static async findById(id) {
+    static async findByName(name) {
         try {
-            const [rows] = await pool.query("SELECT * FROM undercategory WHERE id = ?", [id]);
-            return rows[0];
+            const [rows] = await pool.query("SELECT * FROM undercategory WHERE name = ?", [name]);
+            return rows[0]; // Retourne la première sous-catégorie trouvée (ou undefined si aucune n'est trouvée)
         } catch (error) {
-            throw new Error(`Error fetching undercategory by ID: ${error.message}`);
+            throw new Error(`Error fetching undercategory by name: ${error.message}`);
         }
     }
+
+    
 
     static async create({ category_id, name, description }) {
         try {

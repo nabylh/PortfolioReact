@@ -11,18 +11,6 @@ const getAllCategories = async (req, res) => {
     }
 };
 
-// Récupérer une catégorie par son ID
-const getCategoryById = async (req, res) => {
-    try {
-        const category = await Category.findById(req.params.id);
-        if (!category) {
-            return res.status(404).json({ message: "Catégorie non trouvée" });
-        }
-        res.status(200).json(category);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-};
 
 // Récupérer des catégories par nom
 const getCategoryByName = async (req, res) => {
@@ -72,11 +60,33 @@ const deleteCategory = async (req, res) => {
     }
 };
 
+const getUndercategoriesByCategoryName = async (req, res) => {
+    try {
+        const categoryName = req.params.name;
+        const category = await Category.findByName(categoryName);
+
+        if (!category) {
+            return res.status(404).json({ message: "Catégorie non trouvée" });
+        }
+
+        const undercategories = await Category.getUndercategoriesByCategoryName(categoryName);
+
+        if (undercategories.length === 0) {
+            return res.status(404).json({ message: "Aucune sous-catégorie trouvée pour cette catégorie" });
+        }
+
+        res.status(200).json(undercategories);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+
 export { 
-    getAllCategories, 
-    getCategoryById, 
+    getAllCategories,  
     getCategoryByName, 
     createCategory, 
     updateCategory, 
-    deleteCategory 
+    deleteCategory,
+    getUndercategoriesByCategoryName,
 };

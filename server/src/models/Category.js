@@ -11,12 +11,29 @@ class Category {
         }
     }
 
-    static async findById(id) {
+
+    static async findByName(name) {
         try {
-            const [rows] = await pool.query("SELECT * FROM category WHERE id = ?", [id]);
+            const [rows] = await pool.query("SELECT * FROM category WHERE name = ?", [name]);
             return rows[0];
         } catch (error) {
-            throw new Error(`Error fetching category by ID: ${error.message}`);
+            throw new Error(`Error fetching category by name: ${error.message}`);
+        }
+    }
+
+    static async getUndercategoriesByCategoryName(categoryName) {
+        try {
+            const [rows] = await pool.query(
+                `SELECT u.* 
+                 FROM undercategory u
+                 JOIN category c ON u.category_id = c.id
+                 WHERE c.name = ?
+                 ORDER BY u.name ASC`,
+                [categoryName]
+            );
+            return rows;
+        } catch (error) {
+            throw new Error(`Error fetching undercategories by category name: ${error.message}`);
         }
     }
 
