@@ -22,6 +22,16 @@ const getCategoryByName = async (req, res) => {
     }
 };
 
+// Récupérer des catégories par nom
+const getCategoryBy_Name = async (req, res) => {
+    try {
+        const categories = await Category.findByName(req.params.name);
+        res.status(200).json(categories);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
 // Créer une nouvelle catégorie
 const createCategory = async (req, res) => {
     try {
@@ -89,4 +99,5 @@ export {
     updateCategory, 
     deleteCategory,
     getUndercategoriesByCategoryName,
+    getCategoryBy_Name,
 };

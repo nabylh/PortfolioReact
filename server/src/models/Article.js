@@ -27,7 +27,7 @@ class Article {
     static async findByUndercategoryName(name) {
         try {
             const [rows] = await pool.query(
-                `SELECT a.* 
+                `SELECT a.id, a.title, a.content, a.created_at, u.name AS undercategory_name
                  FROM article a
                  JOIN undercategory u ON a.undercategory_id = u.id
                  WHERE u.name = ?
@@ -39,6 +39,7 @@ class Article {
             throw new Error(`Error fetching articles for undercategory: ${error.message}`);
         }
     }
+    
 
     static async create({ title, content, source, undercategory_id }) {
         try {
@@ -76,3 +77,6 @@ class Article {
 }
 
 export default Article;
+
+
+

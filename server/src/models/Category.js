@@ -20,7 +20,20 @@ class Category {
             throw new Error(`Error fetching category by name: ${error.message}`);
         }
     }
-
+    static async getCategoryBy_Name(categoryName) {
+        try {
+            const [rows] = await pool.query(
+                `SELECT * 
+                 FROM category
+                 WHERE category_name = ?
+                 LIMIT 1`
+                [categoryName]
+            );
+            return rows[0] || null; // Retourne null si aucune catégorie n'est trouvée
+        } catch (error) {
+            throw new Error(`Error fetching category by name: ${error.message}`);
+        }
+    }
     static async getUndercategoriesByCategoryName(categoryName) {
         try {
             const [rows] = await pool.query(
@@ -36,7 +49,20 @@ class Category {
             throw new Error(`Error fetching undercategories by category name: ${error.message}`);
         }
     }
-
+    static async getCategoryByCategoryName(categoryName) {
+        try {
+            const [rows] = await pool.query(
+                `SELECT * 
+                 FROM category
+                 WHERE name = ?
+                 LIMIT 1`, // Limiter à un seul résultat si chaque nom de catégorie est unique
+                [categoryName]
+            );
+            return rows[0]; // Renvoyer uniquement la première ligne si une seule catégorie est attendue
+        } catch (error) {
+            throw new Error(`Error fetching category by category name: ${error.message}`);
+        }
+    }
     static async create({ name, description }) {
         try {
             const [result] = await pool.query(

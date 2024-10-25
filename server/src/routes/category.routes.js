@@ -1,7 +1,7 @@
 // src/routes/category.routes.js
 
 import express from 'express';
-import { getAllCategories, createCategory, updateCategory, deleteCategory,getCategoryByName,getUndercategoriesByCategoryName } from '../controllers/category.controller.js';
+import { getAllCategories, createCategory, updateCategory, deleteCategory,getCategoryByName,getUndercategoriesByCategoryName, getCategoryBy_Name } from '../controllers/category.controller.js';
 import withAdminAuth from '../middlewares/withAdminAuth.js';
 
 const router = express.Router();
@@ -10,6 +10,7 @@ const router = express.Router();
 router.get('/', getAllCategories); // Récupérer toutes les catégories
 router.get('/:name', getCategoryByName); // Récupérer une catégorie par le nom
 router.get('/:name/undercategory', getUndercategoriesByCategoryName);
+router.get('/category/:name', getCategoryBy_Name);
 
 
 

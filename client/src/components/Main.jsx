@@ -13,7 +13,7 @@ function Main() {
   const [article, setArticle] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:3000/articles")
+    fetch("http://localhost:3000/article")
       .then((response) => response.json())
       .then((data) => setArticle(data))
       .catch((error) => console.error("Error fetching article:", error));
@@ -133,6 +133,10 @@ function Main() {
                 height="300"
               />
             }
+            <article className="article-11">
+              
+              
+            </article>
           </article>
         </section>
       </main>
