@@ -19,6 +19,7 @@ router.get('/name/:name', getArticlesByName);
 router.get('/undercategory/:name', getArticlesByUndercategoryName);
 router.get('/category/:name', getArticlesByCategoryName);
 
+
 // Routes protégées
 router.post('/', withAdminAuth, createArticle);
 router.put('/:id', withAdminAuth, updateArticle);

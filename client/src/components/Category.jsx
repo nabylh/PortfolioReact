@@ -3,62 +3,57 @@ import { useParams, Link } from "react-router-dom";
 
 const Category = () => {
   const {categoryName} = useParams();
-  const [category, setCategory] = useState(null);
+  const [underCategories, setUnderCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchCategory = async () => {
+    const fetchUnderCategories = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/category/${encodeURIComponent(categoryName)}`);
+        const response = await fetch(`http://localhost:3000/category/${encodeURIComponent(categoryName)}/undercategory`);
         if (!response.ok) {
-          throw new Error("Erreur lors de la récupération de la catégorie");
+          throw new Error("Erreur lors de la récupération des sous-catégories");
         }
         const data = await response.json();
-        setCategory(data);
+        setUnderCategories(data);
       } catch (error) {
-        console.error("Erreur lors de la récupération de la catégorie :", error);
+        console.error("Erreur lors de la récupération des sous-catégories :", error);
         setError(error.message);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchCategory();
+    fetchUnderCategories();
   }, [categoryName]);
 
   if (loading) {
-    return <p>Chargement de la catégorie...</p>;
+    return <p>Chargement des sous-catégories...</p>;
   }
 
   if (error) {
     return <p>Erreur : {error}</p>;
   }
 
-  if (!category) {
-    return <p>Catégorie non trouvée.</p>;
+  if (underCategories.length === 0) {
+    return <p>Aucune sous-catégorie trouvée pour cette catégorie.</p>;
   }
 
   return (
-    <ul>
-      <h2>{category.name}</h2>
-      <p>{category.description}</p>
-      {/* Ici, vous pouvez ajouter la liste des articles de cette catégorie */}
-      <h3>Articles dans cette catégorie :</h3>
-      
-      {category.articles && category.articles.length > 0 ? (
-        <ul>
-          {category.articles.map((article) => (
-            <li key={article.id}>
-              <Link to={`/article/${article.id}`}>{article.title}</Link>
-              
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>Aucun article dans cette catégorie.</p>
-      )}
-    </ul>
+    <div>
+      <h2>Sous-catégories de {categoryName}</h2>
+      <ul>
+        {underCategories.map((underCategory) => (
+          <li key={underCategory.id}>
+            <h3>{underCategory.name}</h3>
+            <p>{underCategory.description}</p>
+            <Link to={`/category/${categoryName}/undercategory/${underCategory.name}/article`}>
+              Voir les articles
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 

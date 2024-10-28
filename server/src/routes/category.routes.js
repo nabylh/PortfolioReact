@@ -14,6 +14,7 @@ router.get('/category/:name', getCategoryBy_Name);
 
 
 
+
 // Routes protégées (avec withAdminAuth) pour la création, la modification et la suppression des catégories
 router.post('/', withAdminAuth, createCategory); // Créer une nouvelle catégorie
 router.put('/:id', withAdminAuth, updateCategory); // Mettre à jour une catégorie existante

@@ -25,8 +25,8 @@ class Category {
             const [rows] = await pool.query(
                 `SELECT * 
                  FROM category
-                 WHERE category_name = ?
-                 LIMIT 1`
+                 WHERE name = ?
+                 LIMIT 1`,
                 [categoryName]
             );
             return rows[0] || null; // Retourne null si aucune catégorie n'est trouvée
@@ -37,11 +37,10 @@ class Category {
     static async getUndercategoriesByCategoryName(categoryName) {
         try {
             const [rows] = await pool.query(
-                `SELECT u.* 
-                 FROM undercategory u
-                 JOIN category c ON u.category_id = c.id
-                 WHERE c.name = ?
-                 ORDER BY u.name ASC`,
+                `SELECT u.id, u.category_id, u.name, u.description
+                FROM undercategory u
+                JOIN category c ON u.category_id = c.id
+                WHERE c.name = ?`,
                 [categoryName]
             );
             return rows;

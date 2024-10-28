@@ -17,11 +17,13 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/article" element={<Articles />} />
-
         <Route path="/comments/:articleId" element={<CommentsPage />} />
         <Route path="/undercategory" element={<Undercategory />} />
         <Route path="/category" element={<Category />} />
+        <Route path="/category/:categoryName" element={<Category />} />
         <Route path="/undercategory/:undercategoryName"element={<UndercategoryArticles />}/>
+        <Route path="/category/:categoryName/undercategory/:undercategoryName/article" element={<UndercategoryArticles />} />
+
         <Route path="/category/:categoryName" element={<Category />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
