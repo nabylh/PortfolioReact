@@ -41,13 +41,14 @@ const Category = () => {
 
   return (
     <div>
-      <h2>Sous-catégories de {categoryName}</h2>
-      <ul>
+      
+      <ul className="main-article">
+      <h2>Articles  de la catégorie : {categoryName}</h2>
         {underCategories.map((underCategory) => (
           <li key={underCategory.id}>
             <h3>{underCategory.name}</h3>
             <p>{underCategory.description}</p>
-            <Link to={`/category/${categoryName}/undercategory/${underCategory.name}/article`}>
+            <Link to={`/category/${encodeURIComponent(categoryName)}/undercategory/${encodeURIComponent(underCategory.name)}/article`}>
               Voir les articles
             </Link>
           </li>
@@ -55,6 +56,7 @@ const Category = () => {
       </ul>
     </div>
   );
+  
 };
 
 export default Category;
