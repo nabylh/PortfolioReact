@@ -1,7 +1,10 @@
 #articles {
     display: flex;
-    width: auto;
-    margin: auto;
+     width: 100%;
+  height: 100vh; 
+    
+    
+    
 }
 
 #articles .img {
@@ -13,18 +16,23 @@
 
 
 
-ul .articles {
+
+.articles ul {
     display: flex;
+   
+    
 }
 
 
 .category-link {
     
-    padding: 5px;
+    
     text-decoration: none;
     font-family: "roboto";
     color:blue;
-    padding: 0;
+    margin: 10px;
+    margin-left: 0;
+    
     font-size: smaller;
     text-decoration: underline;
     display: flex;
@@ -38,6 +46,7 @@ ul .articles {
     font-family: "roboto";
     font-size: smaller;
     text-decoration: underline;
+    
 }
 
 .comments-link {
@@ -54,13 +63,20 @@ ul .articles {
 
 .category-item {
     color:black;
-    margin: auto;
+    margin-left: 30px;
     
     width: 60%;
-    margin-bottom: 100px;
+    
     font-family: "Roboto", system-ui;
     font-size: 2rem;
     font-weight: 300;
-    margin: auto;
+    margin-top: 60px;
+    margin-left: 100px;
+    
+    
     
 }
+
+
+
+

@@ -30,11 +30,11 @@ const Images = () => {
   }
 
   return (
-    <ul className="image-item">
-      {images.map((image) => (
-        <li key={image.id} className="image-category">
+    <ul className="image-list">
+      {images.map((image, index) => (
+        <li key={image.id} className={`image-item image-item-${index}`}>
           {/* Affichage de l'image */}
-          <img className="image-display"
+          <img className={`image-display image-display-${index}`}
             src={image.url}
             alt={image.description || "Image sans description"} 
             
