@@ -1,0 +1,66 @@
+#articles {
+    display: flex;
+    width: auto;
+    margin: auto;
+}
+
+#articles .img {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+
+
+
+ul .articles {
+    display: flex;
+}
+
+
+.category-link {
+    
+    padding: 5px;
+    text-decoration: none;
+    font-family: "roboto";
+    color:blue;
+    padding: 0;
+    font-size: smaller;
+    text-decoration: underline;
+    display: flex;
+    
+    
+    
+
+}
+
+.undercategory-link {
+    font-family: "roboto";
+    font-size: smaller;
+    text-decoration: underline;
+}
+
+.comments-link {
+    font-family: "roboto";
+    color: red;
+    padding: 0;
+    text-decoration: underline;
+    font-size: smaller;
+    
+}
+
+
+
+
+.category-item {
+    color:black;
+    margin: auto;
+    
+    width: 60%;
+    margin-bottom: 100px;
+    font-family: "Roboto", system-ui;
+    font-size: 2rem;
+    font-weight: 300;
+    margin: auto;
+    
+}

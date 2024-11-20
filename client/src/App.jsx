@@ -9,6 +9,7 @@ import Undercategory from "./components/Undercategory.jsx";
 import Category from "./components/Category";
 import UndercategoryArticles from "./components/UndercategoryArticles";
 import NotFound from "./components/NotFound"; // Assurez-vous de créer ce composant
+import Image from "./components/Images.jsx";
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
         <Route path="/category/:categoryName" element={<Category />} />
         <Route path="/undercategory/:undercategoryName"element={<UndercategoryArticles />}/>
         <Route path="/category/:categoryName/undercategory/:undercategoryName/article" element={<UndercategoryArticles />} />
-
+        { <Route path="/image" element={<Image />} /> }
         <Route path="/category/:categoryName" element={<Category />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

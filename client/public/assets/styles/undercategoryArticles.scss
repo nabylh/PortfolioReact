@@ -5,7 +5,9 @@
 
 
 
-.main-article {
+
+
+.main-undercategoryArticle {
     font-size: larger;
     font-family: "roboto";
     margin: auto;
@@ -21,8 +23,8 @@
     
 }
 
-.main-article {
-    h2 {
+.main-undercategoryArticle {
+    h1 {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -35,7 +37,7 @@
 }
 
 
-.main-article {
+.main-undercategoryArticle{
     h3 {
         font-size: x-large;
     font-family: "roboto";
@@ -48,7 +50,7 @@
 }
 
 
-.main-article {
+.main-undercategoryArticle {
     li {
         display: flex;
         flex-direction: column;
@@ -59,7 +61,7 @@
     }
 }
 
-.main-article {
+.main-undercategoryArticle {
     p {
         text-align: center;
         width: 50%;
@@ -70,14 +72,6 @@
         padding: 5rem;
         font-size: larger;
         
-    }
-}
-
-.main-article {
-    a {
-        color: blue;
-        font-family: "Roboto";
-        font-size: medium;
     }
 }
 

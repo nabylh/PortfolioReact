@@ -1,0 +1,18 @@
+#articles img {
+    width: 60%;
+    margin: auto;
+    height: auto;
+    
+}
+
+#articles .image-item
+{
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 3em;
+    align-items: center;
+    
+}
+
+
+

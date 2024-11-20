@@ -45,8 +45,8 @@ const UndercategoryArticles = () => {
   }
 
   return (
-    <div>
-      <h1>Articles de la sous-catégorie : {undercategoryName}</h1>
+    <div className="main-undercategoryArticle">
+      <h1> {undercategoryName}</h1>
       <ul>
         {articles.map((article) => (
           <li key={article.id}>

@@ -8,6 +8,8 @@ import React, { useEffect, useState } from "react";
 // import BlackWhiteBackground from "/assets/images/BlackWhiteBackground.webp";
 // import laptop from "/assets/images/laptop.jpg";
 import Articles from "./Articles";
+import Images from "./Images";
+import Categories from "./Articles";
 
 function Main() {
   const [article, setArticle] = useState(null);
@@ -111,34 +113,10 @@ function Main() {
         </section>
 
         <section id="articles">
-          <Articles />
-
-          <article className="video_inclusion">
-            <iframe
-              width="580"
-              height="280"
-              src="https://www.youtube.com/embed/uPCPES9ENvs?si=zqVt4GJaW_KdYdyT"
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-            ></iframe>
-            {
-              <img
-                className="img_inclusion"
-                src="/assets/images/inclusion_web_3wc.webp"
-                alt="photo avec le logo de la 3wc"
-                width="500"
-                height="300"
-              />
-            }
-            <article className="article-11">
-              
-              
-            </article>
-          </article>
+          <Categories/>
+          <Images />
         </section>
+        
       </main>
     </>
   );
