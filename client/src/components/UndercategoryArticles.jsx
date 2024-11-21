@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 
 const UndercategoryArticles = () => {
-  const {undercategoryName} = useParams();
+  const { undercategoryName } = useParams();
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -10,7 +10,6 @@ const UndercategoryArticles = () => {
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        // URL corrigée pour correspondre à la structure de votre API
         const response = await fetch(
           `http://localhost:3000/article/undercategory/${undercategoryName}`
         );
@@ -20,6 +19,7 @@ const UndercategoryArticles = () => {
         }
 
         const data = await response.json();
+        
         setArticles(data);
       } catch (error) {
         setError(error.message);
@@ -31,7 +31,7 @@ const UndercategoryArticles = () => {
 
     fetchArticles();
   }, [undercategoryName]);
-
+   
   if (loading) {
     return <p>Chargement des articles...</p>;
   }
@@ -46,21 +46,34 @@ const UndercategoryArticles = () => {
 
   return (
     <div className="main-undercategoryArticle">
-      <h1> {undercategoryName}</h1>
+      <h1>{undercategoryName}</h1>
       <ul>
-        {articles.map((article) => (
-          <li key={article.id}>
-            <h2>{article.title}</h2>
-            <p>{article.content}</p>
-            <small>
-              Publié le : {new Date(article.created_at).toLocaleDateString()}
-            </small>
-            <Link to={`/comments/${article.id}`} className="comments-link">
-              Voir les commentaires
-            </Link>
-          </li>
-        ))}
-      </ul>
+  {articles.map((article) => {
+    console.log("Article en cours de traitement :", article); // Ajoutez ce log
+    return (
+      <li key={article.id}>
+        <h2>{article.title}</h2>
+        <p>{article.content}</p>
+        {/* Vérifie si une image est disponible pour l'article */}
+        {article.image_url ? (
+          <img
+            className="image-article"
+            src={article.image_url}
+            alt={`Image pour ${article.title}`}
+          />
+        ) : (
+          <p>Aucune image disponible.</p>
+        )}
+        <small>
+          Publié le : {new Date(article.created_at).toLocaleDateString()}
+        </small>
+        <Link to={`/comments/${article.id}`} className="comments-link">
+          Voir les commentaires
+        </Link>
+      </li>
+    );
+  })}
+</ul>
     </div>
   );
 };

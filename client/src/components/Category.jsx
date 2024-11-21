@@ -44,8 +44,8 @@ const Category = () => {
       
       <ul className="main-article">
       <h2>Articles  de la catégorie : {categoryName}</h2>
-        {underCategories.map((underCategory) => (
-          <li key={underCategory.id}>
+        {underCategories.map((underCategory,index) => (
+          <li key={underCategory.id}className={`article-item-${index}`}>
             <h3>{underCategory.name}</h3>
             <p>{underCategory.description}</p>
             <Link to={`/category/${encodeURIComponent(categoryName)}/undercategory/${encodeURIComponent(underCategory.name)}/article`}>

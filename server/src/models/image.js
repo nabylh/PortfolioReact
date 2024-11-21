@@ -4,7 +4,7 @@ import pool from "../config/db.js";
 class Image {
     static async findAll() {
         try {
-            const [rows] = await pool.query("SELECT * FROM image ORDER BY created_at DESC");
+            const [rows] = await pool.query("SELECT * FROM image ORDER BY display_order ASC");
             return rows;
         } catch (error) {
             throw new Error(`Error fetching images: ${error.message}`);

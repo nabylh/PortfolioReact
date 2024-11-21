@@ -116,6 +116,8 @@ function Main() {
           <Categories/>
           <Images />
         </section>
+       
+       
         
       </main>
     </>

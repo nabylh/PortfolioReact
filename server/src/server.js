@@ -47,7 +47,7 @@ app.use(
 );
 
 // Middleware pour servir des fichiers statiques
-app.use("/img", express.static(path.join(process.cwd(), "public/img"))); // Servir les images
+app.use("/images", express.static(path.join(process.cwd(), "public/images"))); // Servir les images
 
 app.use(express.json()); // Middleware pour parser le JSON
 app.use(express.urlencoded({ extended: false })); // Middleware pour parser les données URL-encodées
@@ -68,6 +68,7 @@ app.use(express.urlencoded({ extended: false })); // Middleware pour parser les 
 
 // Utilisation des routes définies dans index.routes.js
 app.use('/', router); 
+
 
 // Démarrage du serveur
 app.listen(PORT, () =>
